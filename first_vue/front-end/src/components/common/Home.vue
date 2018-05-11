@@ -1,3 +1,9 @@
+/*
+ * @Author: mikey.zhaopeng
+ * @Date: 2018-05-11 23:22:56
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2018-05-11 23:25:06
+ */
 <template>
     <div class="wrapper">
         <v-head></v-head>
