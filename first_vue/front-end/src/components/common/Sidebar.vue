@@ -36,6 +36,11 @@ export default {
           title: '系统首页'
         },
         {
+          icon: 'el-icon-setting',
+          index: 'map',
+          title: '地图'
+        },
+        {
           icon: 'el-icon-tickets',
           index: 'table',
           title: '基础表格'

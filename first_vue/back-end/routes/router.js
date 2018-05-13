@@ -1,9 +1,9 @@
 let express = require('express');
 let goods = require('../controls/goods');
 let user = require('../controls/user');
+let map=require('../controls/map')
 let api = require('../api');
 let upload = require('../utils/upload');
-
 
 let router = express.Router();
 
@@ -26,5 +26,8 @@ router.post(api.userDelete, user.deleteOne);
 router.post(api.userDeleteMulti, user.deleteMulti);
 router.post(api.userLogin, user.login); // 登录
 router.post(api.userChangeRole, user.controlVisit, user.changeRole); // 更改权限
+
+// map
+router.get(api.mapList,map.fetchAll);
 
 module.exports = router;

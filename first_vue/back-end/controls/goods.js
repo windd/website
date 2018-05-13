@@ -12,7 +12,7 @@ function formatData(rows) {
 
 
 module.exports = {
-    // 获取商品列表
+    //获取商品列表
     fetchAll (req, res) {
         func.connPool(sql.queryAll, 'goods', rows => {
             rows = formatData(rows);

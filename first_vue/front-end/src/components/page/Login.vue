@@ -60,12 +60,13 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          console.log(this.api.userLogin)
           this.axiosapi.ajaxPost(this.api.userLogin, this.ruleForm, res => {
             if (res.data.code === 200) {
               this.$store.commit('user', res.data.user)
-              // console.log(this.$store.state.user)
+              console.log(this.$store.state.user)
               // this.$message.success('ok')
-              this.$router.push('/home')
+              this.$router.push('/map')
             } else {
               this.$message.error('password wrong')
             }
