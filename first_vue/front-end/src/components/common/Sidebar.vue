@@ -41,6 +41,11 @@ export default {
           title: '地图'
         },
         {
+          icon: 'el-icon-setting',
+          index: 'chart',
+          title: 'chart2'
+        },
+        {
           icon: 'el-icon-tickets',
           index: 'table',
           title: '基础表格'

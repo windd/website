@@ -23,7 +23,8 @@
     "vue-quill-editor": "^3.0.6",
     "vue-cropperjs": "^2.2.0",
     "mavon-editor": "^2.6.3",
-    "vuedraggable": "^2.16.0"
+    "vuedraggable": "^2.16.0",
+    "vue2-highcharts": "^1.1.9"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
