@@ -50,7 +50,7 @@ export default {
     return {
       collapse: false,
       fullscreen: false,
-      name: 'linxin',
+      name: '管理员',
       message: 2
     }
   },

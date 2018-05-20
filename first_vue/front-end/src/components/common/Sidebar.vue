@@ -30,20 +30,30 @@ export default {
     return {
       collapse: false,
       items: [
+        // {
+        //   icon: 'el-icon-setting',
+        //   index: 'dashboard',
+        //   title: '系统首页'
+        // },
         {
-          icon: 'el-icon-setting',
-          index: 'dashboard',
-          title: '系统首页'
-        },
-        {
-          icon: 'el-icon-setting',
+          icon: 'el-icon-location',
           index: 'map',
-          title: '地图'
+          title: '地图主页'
         },
         {
-          icon: 'el-icon-setting',
+          icon: 'el-icon-time',
+          index: 'data',
+          title: '实时数据'
+        },
+        {
+          icon: 'el-icon-document',
+          index: 'history_data',
+          title: '历史数据'
+        },
+        {
+          icon: 'el-icon-news',
           index: 'chart',
-          title: 'chart2'
+          title: '曲线'
         },
         {
           icon: 'el-icon-tickets',

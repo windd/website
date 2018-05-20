@@ -26,9 +26,19 @@ export default new Router({
           meta: { title: '地图' }
         },
         {
+          path: '/data',
+          component: resolve => require(['../components/page/data.vue'], resolve),
+          meta: { title: '实时数据' }
+        },
+        {
+          path: '/history_data',
+          component: resolve => require(['../components/page/history_data.vue'], resolve),
+          meta: { title: '历史数据' }
+        },
+        {
           path: '/chart',
           component: resolve => require(['../components/page/chart.vue'], resolve),
-          meta: { title: 'chart1' }
+          meta: { title: '数据曲线' }
         },
         {
           path: '/table',

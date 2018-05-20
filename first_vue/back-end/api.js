@@ -21,4 +21,9 @@ module.exports = {
 
     //map
     mapList: path+'/map/list',
+
+    //data
+    dataLastest: path+'/data/lastest',
+    dataHistory: path+'/data/history',
+    dataChart: path+'/data/chart',
 };

@@ -20,7 +20,7 @@ Vue.prototype.api = api
 Vue.prototype.axiosapi = axiosapi
 
 router.beforeEach((to, from, next) => {
-  console.log(to.path)
+  // console.log(to.path)
   if (to.path === '/login') {
     next()
   } else {
@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
     if (islogin) {
     // console.log(router.app.$store.state.user.role)
       if (router.app.$store.state.user.role > 10) {
-        console.log('2')
+        // console.log('2')
         next()
       } else {
         console.log('4')

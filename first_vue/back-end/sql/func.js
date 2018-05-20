@@ -7,7 +7,7 @@ module.exports = {
         console.log(sql,val)
         pool.getConnection((err, conn) => {
             let q = conn.query(sql, val, (err, rows) => {
-                console.log(sql)
+//                console.log(sql)
                 if (err) {
                     console.log(err);
                 }

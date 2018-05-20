@@ -14,6 +14,7 @@ export default {
   data () {
     return {
       init: true,
+      dwself: [],
       station: []
     }
   },
@@ -21,11 +22,15 @@ export default {
     this.create()
   },
   methods: {
+    routeto () {
+      this.$router.push('/data')
+    },
     create () {
       this.axiosapi.ajaxGet(this.api.mapList, res => {
         // console.log(this.station)
         this.station = res.data.stationdata
         this.mapinit()
+        this.dwself = this
       })
     },
     mapinit () {
@@ -44,7 +49,6 @@ export default {
       map.addControl(new BMap.MapTypeControl())
       // 开启鼠标滚轮缩放
       map.enableScrollWheelZoom(true)
-
       console.log(i)
       while (i) {
         point = new BMap.Point(this.station[i - 1].longitude, this.station[i - 1].latitude)
@@ -52,8 +56,9 @@ export default {
         marker = new BMap.Marker(point)
         marker.setLabel(label)// 添加新图标的标签
         marker.addEventListener('click', function () { // 添加新图标的监听事件
-          var p = marker.getPosition()// 获取位置
-          alert('点击的位置是：' + p.lng + ',' + p.lat)
+          // var p = marker.getPosition()// 获取位置
+          // alert('点击的位置是：' + p.lng + ',' + p.lat)
+          window.location.href = '/#/data'
         })
         map.addOverlay(marker)
         centerJ = this.station[i - 1].longitude + centerJ
