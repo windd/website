@@ -33,7 +33,7 @@ router.get(api.mapList,map.fetchAll);
 
 //data
 router.get(api.dataLastest,data.lastest);
-router.get(api.dataHistory,data.history);
+router.post(api.dataHistory,data.history);
 router.get(api.dataChart,data.chart);
 
 module.exports = router;

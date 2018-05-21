@@ -4,4 +4,5 @@ module.exports = {
     del: 'DELETE FROM ?? WHERE id=?',
     lastest: 'SELECT * FROM ?? order by id desc LIMIT 1',
     chart:'SELECT UA FROM ?? order by id desc',
+    Preiod: 'SELECT * FROM ?? WHERE Create_Time BETWEEN ? AND ? ORDER BY Create_Time'
 };

@@ -4,7 +4,7 @@ let func = require('../sql/func');
 
 function formatData(rows) {
     return rows.map(row => {
-        let date = moment(row.Create_Time).format('YYYY-MM-DD hh:mm:ss');
+        let date = moment(row.Create_Time).format('YYYY-MM-DD HH:mm:ss');
         return Object.assign({}, row, {Create_Time: date});
     });
 }
@@ -21,7 +21,10 @@ module.exports = {
     },
 
     history (req, res) {
-        func.connPool(sql.queryAll, 'historydata', rows => {
+        console.log(req.body)
+        let start = moment(req.body[0]).format('YYYY-MM-DD HH:mm:ss')
+        let end = moment(req.body[1]).format('YYYY-MM-DD HH:mm:ss')
+        func.connPool(sql.Preiod, ['historydata',start,end], rows => {
             rows = formatData(rows);
             console.log(rows)
             res.json({code: 200, msg: 'ok', historydata: rows});
