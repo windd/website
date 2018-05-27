@@ -21,8 +21,8 @@ export default new Router({
           meta: { title: '系统首页' }
         },
         {
-          path: '/map',
-          component: resolve => require(['../components/page/map.vue'], resolve),
+          path: '/amap',
+          component: resolve => require(['../components/page/Amap.vue'], resolve),
           meta: { title: '地图' }
         },
         {

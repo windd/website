@@ -4,6 +4,10 @@ let path = require('path');
 let session = require('express-session');
 let router = require('./routes/router');
 
+let modbusNet=require('./modbus/modbusNet')
+
+
+
 let port = process.env.PORT || 1237;
 let app = express();
 

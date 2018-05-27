@@ -9,19 +9,19 @@
           <img src="../../../static/img/kyn28-side.png"><br><br>
         </div>
         <div style="display:inline-block;width:700px;height:546px;margin-left:10px" class="">
-          <el-tag style="width:400px;color:#98FB98">更新时间: {{RealtimeData[0].Create_Time}}</el-tag><br><br>
+          <el-tag style="width:400px;">更新时间: {{RealtimeData[0].Create_Time}}</el-tag><br><br>
 
-          <el-tag style="color:#ffff00">UA: {{RealtimeData[0].UA}} kV</el-tag>
-          <el-tag style="color:#00ff00">UB: {{RealtimeData[0].UB}} kV</el-tag>
-          <el-tag style="color:#DC143C">UC: {{RealtimeData[0].UC}} kV</el-tag>
+          <el-tag style="color:#ffffff">UA: {{RealtimeData[0].UA}} kV</el-tag>
+          <el-tag style="color:#ffffff">UB: {{RealtimeData[0].UB}} kV</el-tag>
+          <el-tag style="color:#ffffff">UC: {{RealtimeData[0].UC}} kV</el-tag>
 
-          <el-tag style="color:#ffff00">IA: {{RealtimeData[0].IA}} A</el-tag>
-          <el-tag style="color:#00ff00">IB: {{RealtimeData[0].IB}} A</el-tag>
-          <el-tag style="color:#DC143C">IC: {{RealtimeData[0].IC}} A</el-tag><br><br>
+          <el-tag style="color:#ffffff">IA: {{RealtimeData[0].IA}} A</el-tag>
+          <el-tag style="color:#ffffff">IB: {{RealtimeData[0].IB}} A</el-tag>
+          <el-tag style="color:#ffffff">IC: {{RealtimeData[0].IC}} A</el-tag><br>
 
-          <el-tag >P: {{RealtimeData[0].P}} kW</el-tag>
-          <el-tag >Q: {{RealtimeData[0].Q}} kVar</el-tag>
-          <el-tag >COS: {{RealtimeData[0].COS}}</el-tag><br><br>
+          <el-tag style="color:#ffffff">P: {{RealtimeData[0].P}} kW</el-tag>
+          <el-tag style="color:#ffffff">Q: {{RealtimeData[0].Q}} kVar</el-tag>
+          <el-tag style="color:#ffffff">COS: {{RealtimeData[0].COS}}</el-tag><br><br>
 
           <el-tag >上端A温度: {{RealtimeData[0].UpTempA}} ℃</el-tag>
           <el-tag >上端B温度: {{RealtimeData[0].UpTempB}} ℃</el-tag>
@@ -157,7 +157,7 @@ export default {
   }
 
 .el-tag{
-  background:#848587;
+  background:#21d0d3;
   color: #13171f;
   width:200px;
   height: 50px;

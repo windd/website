@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:1237',
+        target: 'http://localhost:1237', // 'http://dustwind.top:1237', //
         secure: false,
         changeOrigin: true
         // pathRewrite: {'^/api': ''}

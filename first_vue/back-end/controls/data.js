@@ -32,10 +32,28 @@ module.exports = {
     },
 
     chart (req, res) {
-        func.connPool(sql.chart, 'historydata', rows => {
-           // rows = formatData(rows);
-            console.log(rows)
-            res.json({code: 200, msg: 'ok', chartdata: rows});
+        console.log(req.body)
+        let start = moment(req.body.start).format('YYYY-MM-DD HH:mm:ss')
+        let end = moment(req.body.end).format('YYYY-MM-DD HH:mm:ss')
+        let dataName=req.body.dataName
+        func.connPool(sql.chart,  [dataName,'historydata',start,end], (rows,DName) => {
+            let dataArray=new Array()
+            let i
+            for(i=0;i<rows.length;i++){
+               dataArray[i]=rows[i][DName]
+            }
+            console.log(dataArray)
+            res.json({code: 200, msg: 'ok', chartData: dataArray});
         });
     },
+
+    addone (data) {
+
+        query = 'INSERT INTO historydata(UA,UB) VALUES(?,?)';
+        arr = [data[9],data[10]];
+        console.log(arr)
+        func.connPool(query, arr, rows => {
+            return {code: 200, msg: 'done'}
+        })
+    }
 };

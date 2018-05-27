@@ -1,128 +1,136 @@
 <template>
   <div>
-    <vue-highcharts :options="options" ref="lineCharts"></vue-highcharts>
-    <!--<button @click="load">load</button>-->
+    <span class="block">
+          <span class="demonstration">设置起止日期:</span>
+          <el-date-picker
+            v-model="Period"
+            type="datetimerange"
+            :picker-options="pickerOptions2"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            align="right">
+          </el-date-picker>
+          <el-button @click="getData"  type="success">查询</el-button>
+    </span>
+    <span>
+         <el-select v-model="selectValue" clearable placeholder="请选择">
+         <el-option
+      v-for="item in selectOptions"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+    </span>
+    <div id="myChart" :style="{width: '1000px', height: '500px'}"></div>
   </div>
 </template>
 
 <script>
-import VueHighcharts from 'vue2-highcharts'
-var asyncData = {
-  name: 'UA',
-  marker: {
-    symbol: 'square'
-  },
-  data: [
-    7.0,
-    6.9,
-    9.5,
-    14.5,
-    18.2,
-    21.5,
-    25.2,
-    {
-      y: 26.5,
-      marker: {
-        symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'
-      }
-    },
-    23.3,
-    18.3,
-    13.9,
-    9.6
-  ]
-}
+import echarts from 'echarts'
+
 export default {
-  components: {
-    VueHighcharts
-  },
   data () {
     return {
-      aaa: [],
-      options: {
-        chart: {
-          type: 'spline'
-        },
-        title: {
-          text: 'Monthly Average Temperature'
-        },
-        subtitle: {
-          text: 'Source: WorldClimate.com'
-        },
+      pickerOptions2: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近三个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      },
+      Period: ['2018-5-15 10:10', '2018-5-15 11:00'], // [new Date() - 3600 * 1000 * 24, new Date()],
+      postData: {
+        start: '',
+        end: '',
+        dataName: 'UA'
+      },
+      myChart: '',
+      chartOption: {
+        title: { text: '数据曲线' },
+        tooltip: {},
         xAxis: {
-          categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-          ]
+          data: []
         },
-        yAxis: {
-          title: {
-            text: 'Temperature'
-          },
-          labels: {
-            formatter: function () {
-              return this.value + '°'
-            }
-          }
-        },
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: false
-        },
-        plotOptions: {
-          spline: {
-            marker: {
-              radius: 4,
-              lineColor: '#666666',
-              lineWidth: 1
-            }
-          }
-        },
-        series: []
-      }
+        yAxis: {},
+        series: [{
+          name: '',
+          type: 'line',
+          data: []
+        }]
+      },
+      selectOptions: [{
+        value: 'UA',
+        label: 'UA'
+      }, {
+        value: 'UB',
+        label: 'UB'
+      }, {
+        value: 'UC',
+        label: 'UC'
+      }, {
+        value: 'IA',
+        label: 'IA'
+      }, {
+        value: 'P',
+        label: 'P'
+      }],
+      selectValue: 'UA'
     }
   },
   created () {
-
   },
   mounted () {
-    this.getData()
-    this.load()
+    this.drawLine()
   },
   methods: {
-    load () {
-      let lineCharts = this.$refs.lineCharts
-      lineCharts.delegateMethod('showLoading', 'Loading...')
-      setTimeout(() => {
-        lineCharts.addSeries(asyncData)
-        lineCharts.hideLoading()
-      }, 100)
+    drawLine () {
+      // 基于准备好的dom，初始化echarts实例
+      this.myChart = echarts.init(document.getElementById('myChart'))
+      // 绘制图表
+      this.myChart.setOption(this.chartOption)
     },
     getData () {
-      this.axiosapi.ajaxGet(this.api.dataChart, res => {
-        this.aaa = res.data.chartdata
-        // this.load = false
-        console.log(this.aaa)
-        let i = this.aaa.length
-        console.log(asyncData)
-        while (i) {
-          asyncData.data[i - 1] = this.aaa[i - 1].UA
-          i--
+      this.chartOption.title.text = this.selectValue
+      this.postData.start = this.Period[0]
+      this.postData.end = this.Period[1]
+      this.postData.dataName = this.selectValue
+      console.log(this.chartOption.series)
+      this.axiosapi.ajaxPost(this.api.dataChart, this.postData, res => {
+        if (res.data.code === 200) {
+          this.chartOption.series[0].data = res.data.chartData
+          this.chartOption.series[0].name = this.selectValue
+          let i
+          for (i = 1; i < this.chartOption.series[0].data.length - 1; i++) {
+            this.chartOption.xAxis.data[i] = ''
+          }
+          this.chartOption.xAxis.data[0] = this.Period[0]
+          this.chartOption.xAxis.data[i] = this.Period[1]
+          this.myChart.setOption(this.chartOption)
+        } else {
+          this.$message.error('wrong')
         }
-        console.log(asyncData.data)
       })
     }
   }

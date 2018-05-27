@@ -34,6 +34,6 @@ router.get(api.mapList,map.fetchAll);
 //data
 router.get(api.dataLastest,data.lastest);
 router.post(api.dataHistory,data.history);
-router.get(api.dataChart,data.chart);
+router.post(api.dataChart,data.chart);
 
 module.exports = router;

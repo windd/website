@@ -1,3 +1,4 @@
+
 <template>
     <div class="sidebar">
         <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
@@ -13,6 +14,7 @@
                         </el-menu-item>
                     </el-submenu>
                 </template>
+
                 <template v-else>
                     <el-menu-item :index="item.index" :key="item.index">
                         <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
@@ -22,7 +24,6 @@
         </el-menu>
     </div>
 </template>
-
 <script>
 import bus from '../common/bus'
 export default {
@@ -37,7 +38,7 @@ export default {
         // },
         {
           icon: 'el-icon-location',
-          index: 'map',
+          index: 'amap',
           title: '地图主页'
         },
         {
@@ -54,7 +55,8 @@ export default {
           icon: 'el-icon-news',
           index: 'chart',
           title: '曲线'
-        },
+        }
+        /*
         {
           icon: 'el-icon-tickets',
           index: 'table',
@@ -107,7 +109,7 @@ export default {
           icon: 'el-icon-error',
           index: '404',
           title: '404页面'
-        }
+        } */
       ]
     }
   },
@@ -126,17 +128,17 @@ export default {
 </script>
 
 <style scoped>
-    .sidebar{
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 70px;
-        bottom:0;
-    }
-    .sidebar-el-menu:not(.el-menu--collapse){
-        width: 250px;
-    }
-    .sidebar > ul {
-        height:100%;
-    }
+.sidebar {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 70px;
+  bottom: 0;
+}
+.sidebar-el-menu:not(.el-menu--collapse) {
+  width: 150px;
+}
+.sidebar > ul {
+  height: 100%;
+}
 </style>

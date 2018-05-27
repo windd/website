@@ -66,7 +66,7 @@ export default {
               this.$store.commit('user', res.data.user)
               console.log(this.$store.state.user)
               // this.$message.success('ok')
-              this.$router.push('/map')
+              this.$router.push('/amap')
             } else {
               this.$message.error('password wrong')
             }

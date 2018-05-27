@@ -12,9 +12,9 @@ module.exports = {
                     console.log(err);
                 }
 
-               // console.log(a);
+                //console.log(val[0]);
 
-                cb(rows);
+                cb(rows,val[0]);
 
                 conn.release();
             });
@@ -28,7 +28,6 @@ module.exports = {
         if (!data) {
             delete obj.data;
         }
-
         res.send(obj);
     },
 };
