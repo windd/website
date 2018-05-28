@@ -26,4 +26,8 @@ module.exports = {
     dataLastest: path+'/data/lastest',
     dataHistory: path+'/data/history',
     dataChart: path+'/data/chart',
+
+    //command
+    commandFZ:path+'/command/fz',
+    commandHZ:path+'/command/hz',
 };

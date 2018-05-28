@@ -3,6 +3,7 @@ let goods = require('../controls/goods');
 let user = require('../controls/user');
 let map=require('../controls/map')
 let data=require('../controls/data')
+let command=require('../controls/command')
 let api = require('../api');
 let upload = require('../utils/upload');
 
@@ -35,5 +36,9 @@ router.get(api.mapList,map.fetchAll);
 router.get(api.dataLastest,data.lastest);
 router.post(api.dataHistory,data.history);
 router.post(api.dataChart,data.chart);
+
+//command
+router.post(api.commandFZ,command.FZ);
+router.post(api.commandHZ,command.HZ);
 
 module.exports = router;

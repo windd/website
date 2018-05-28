@@ -1,7 +1,7 @@
-var net = require('net');
-var modbus=require('./modbus')
+let net = require('net');
+let modbus=require('./modbus')
 
-var PORT = 6969;
+var PORT = 1238;
 var server = net.createServer();
 server.listen(PORT,()=>{
     console.log('TCPServer listening on '  + ':' + server.address().port);
@@ -9,6 +9,8 @@ server.listen(PORT,()=>{
 
 var sockets=[]
 var timer
+
+module.exports = sockets
 
 server.on('connection', function(sock) {
     
@@ -36,7 +38,7 @@ server.on('connection', function(sock) {
             console.log('stop')
             timer.cancel()
         }
-    },2000)
+    },5000)
   }
 
 })

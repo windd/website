@@ -8,7 +8,7 @@
         <div style="float:left;" class="">
           <img src="../../../static/img/kyn28-side.png"><br><br>
         </div>
-        <div style="display:inline-block;width:700px;height:546px;margin-left:10px" class="">
+        <div style="display:inline-block;width:700px;height:506px;margin-left:10px" class="">
           <el-tag style="width:400px;">更新时间: {{RealtimeData[0].Create_Time}}</el-tag><br><br>
 
           <el-tag style="color:#ffffff">UA: {{RealtimeData[0].UA}} kV</el-tag>
@@ -70,8 +70,9 @@
                 <el-table-column prop="create_time" label="时间" width="160"></el-table-column>
         </el-table>-->
         </div>
-        <div>
-
+        <div style="margin-left:10px">
+<el-button @click="heZha"  type="danger ">合闸</el-button>
+<el-button @click="fenZha" type="success">分闸</el-button>
         </div>
     </div>
 </template>
@@ -81,7 +82,8 @@ export default {
   data () {
     return {
       RealtimeData: [],
-      load: true
+      load: true,
+      command: ''
     }
   },
   created () {
@@ -125,7 +127,29 @@ export default {
         // clearTimeout(this.timeOut)
         // this.timeOut = ''
       }
+    },
+    fenZha () {
+      this.command = {type: 'fenzha', msg: 'FFF0FE'}
+      this.axiosapi.ajaxPost(this.api.commandFZ, this.command, res => {
+        console.log(res)
+        if (res.data.code === 200) {
+          this.$message.success('分闸成功')
+        } else {
+          this.$message.error('分闸失败')
+        }
+      })
+    },
+    heZha () {
+      this.command = {type: 'hezha', msg: 'F0F0FE'}
+      this.axiosapi.ajaxPost(this.api.commandHZ, this.command, res => {
+        if (res.data.code === 200) {
+          this.$message.success('合闸成功')
+        } else {
+          this.$message.error('合闸失败')
+        }
+      })
     }
+
   }
 }
 </script>
