@@ -1,5 +1,15 @@
 /first_vue/back-end/node_modules
 /first_vue/front-end/node_modules
 /first_vue/front-end/dist
+
+/first_vue/mobile-mint/node_modules
+/first_vue/mobile-mint/dist
+
+/first_vue/mobile-vux/node_modules
+/first_vue/mobile-vux/dist
+
+
+
+
 /vue-fb-demo/back-end/node_modules
 /vue-fb-demo/front-end/node_modules
